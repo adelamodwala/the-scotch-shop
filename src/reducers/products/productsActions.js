@@ -1,4 +1,4 @@
-import {postFetch} from '../../lib/api';
+import {getFetch, postFetch} from '../../lib/api';
 import {productsActionTypes} from '../../lib/actionKeys';
 
 export function fetchProductsListRequest() {
@@ -14,26 +14,34 @@ export function fetchProductsListSuccess(payload) {
     }
 }
 
-export function fetchProductsListFailure() {
+export function fetchProductsListFailure(payload) {
     return {
-        type: productsActionTypes.FETCH_PRODUCTS_LIST_FAILURE
+        type: productsActionTypes.FETCH_PRODUCTS_LIST_FAILURE,
+        payload
     }
 }
 
 export function fetchProductsList() {
-    (dispatch, getState) => {
+    return (dispatch, getState) => {
         dispatch(fetchProductsListRequest());
+        return sendFetchProductsListRequest();
+    }
+}
+
+function sendFetchProductsListRequest() {
+    return (dispatch) => {
+        let ACCESS_KEY = "MDo4Mjg3MDljOC04YjZhLTExZTYtOWVkNC00ZmIyNjBmZDA0MWY6a0xDbElDU3lJdXVLVUhKR3BmN0ZrTUpWRTFLSnc3TU5HOEF6";
         let opts = {
-            endpoint: 'https://lcboapi.com/products',
+            host: 'https://lcboapi.com',
+            endpoint: '/products?q=scotch',
             headers: {
-                "Authorization": "Token MDoyOTY1ZDAyNi04YjU3LTExZTYtOGU4Ny00YjMwNGQwMjY1Nzc6WDlibXZ5Sk1LM1lhaFlwd1hBYW1qR0w0TG9LUVJoUmY2dnB2"
+                "Authorization": "Token " + ACCESS_KEY
             }
         };
 
-        return postFetch(opts)
+        return getFetch(opts)
             .then((response) => {
                 let json;
-                debugger;
                 if (response.ok) {
                     json = response.json();
                 }
@@ -44,12 +52,14 @@ export function fetchProductsList() {
                 return json;
             })
             .then((json) => {
-                if (typeof json == "string") {
-                    dispatch(fetchProductsListSuccess(json));
+                if (typeof json == "object" && json.result) {
+                    dispatch(fetchProductsListSuccess({
+                        data: json.result
+                    }));
                 }
                 else {
                     console.log(json);
-                    dispatch(fetchProductsListFailure());
+                    dispatch(fetchProductsListFailure(json));
                 }
             });
     }

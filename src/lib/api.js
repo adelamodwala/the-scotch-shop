@@ -16,12 +16,32 @@ function sanitizePostOpts(opts) {
     let contentType = opts.contentType ? opts.contentType : 'application/json';
     let optHeaders = opts.headers ? opts.headers : {};
     let optBody = opts.body ? opts.body : '';
+    let host = opts.host || apiAddress;
 
     return {
         contentType,
         optHeaders,
-        optBody
+        optBody,
+        host
     }
+}
+
+/**
+ * Perform a GET request to the app server
+ * @param  {Object} opts contains endpoint, body[, contentType]
+ * @return {Promise}     To handle returned data or errors
+ */
+export function getFetch(opts) {
+    let sanitizedOpts = sanitizePostOpts(opts);
+    let getOpts = {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            ...sanitizedOpts.optHeaders
+        }
+    };
+
+    return fetch(sanitizedOpts.host + opts.endpoint, getOpts);
 }
 
 /**
@@ -43,5 +63,5 @@ export function postFetch(opts) {
         postOpts.body = sanitizedOpts.optBody;
     }
 
-    return fetch(apiAddress + opts.endpoint, postOpts);
+    return fetch(sanitizedOpts.host + opts.endpoint, postOpts);
 }

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
-import SnailLoader from '../common/SnailLoader';
+
 import * as productsActions from '../../reducers/products/productsActions';
+import SnailLoader from '../common/SnailLoader';
+import ProductTile from './ProductTile';
 
 class Home extends Component {
 
@@ -18,13 +20,31 @@ class Home extends Component {
         let homeClass = classNames({
             'home-container': true
         });
+        let products = this.props.products;
 
         return (
             <div>
                 <div className={homeClass}>
-                    <div style={{position: 'absolute', left: 'calc(50% - 15px)', paddingTop: 30}}>
-                        <SnailLoader />
-                    </div>
+                    {products.length > 0 ?
+                        <div style={{
+                            padding: 10,
+                            display: "flex",
+                            flex: 1,
+                            justifyContent: "center",
+                            flexDirection: "row",
+                            flexFlow: "wrap"
+                        }}>
+                            {products.map((product, idx) => {
+                                return (
+                                    <ProductTile key={idx} product={product}/>
+                                );
+                            })}
+                        </div> :
+                        <div style={{position: 'absolute', left: 'calc(50% - 15px)', paddingTop: 30}}>
+                            <SnailLoader />
+                        </div>
+                    }
+
                 </div>
 
             </div>
