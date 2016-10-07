@@ -1,16 +1,20 @@
 import {productsActionTypes} from '../../lib/actionKeys';
 
 const initialState = {
-    data: [],
+    data: {},
     fetchedProducts: false
 };
 
 export default function conversionReducer(state = initialState, action) {
     switch (action.type) {
         case productsActionTypes.FETCH_PRODUCTS_LIST_SUCCESS:
+            let dataObj = {};
+            action.payload.data.map((item) => {
+               dataObj[item.product_no] = item;
+            });
             return {
                 ...state,
-                data: action.payload.data,
+                data: dataObj,
                 fetchedProducts: true
             };
 

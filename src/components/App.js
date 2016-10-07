@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import styleVariables from '../lib/styleVariables.json';
-
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import * as productsActions from '../reducers/products/productsActions';
+import AppHeader from './AppHeader';
 
 class App extends Component {
     componentDidMount() {
         console.log("MOUNTED HOME");
         let {products} = this.props;
-        if(products.length == 0 ) {
+        if(Object.keys(products).length == 0 ) {
             let {dispatch, actions} = this.props;
             dispatch(actions.fetchProductsList());
         }
@@ -22,8 +21,7 @@ class App extends Component {
             <div>
                 <MuiThemeProvider>
                     <div>
-                        <AppBar title="The Scotch Shop" iconClassNameRight="muidocs-icon-navigation-expand-more"
-                                style={{backgroundColor: styleVariables.colors.themeBg, color: styleVariables.colors.primaryBgText}}/>
+                        <AppHeader/>
                         <div className="app-components">
                             {this.props.children}
                         </div>

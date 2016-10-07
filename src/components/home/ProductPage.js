@@ -4,12 +4,22 @@ import {bindActionCreators} from 'redux';
 import {Card, CardTitle, CardActions, CardHeader, CardText, CardMedia} from 'material-ui/Card';
 import {Link} from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import SnailLoader from '../common/SnailLoader';
-
+import styleVariables from '../../lib/styleVariables.json';
 import {capitalizeFirstLetter} from '../../lib/convert';
+import * as cartActions from '../../reducers/cart/cartActions';
 
 class ProductPage extends Component {
+
+    addItemToCart() {
+        console.log(this.props.productId);
+        let {actions, productId} = this.props;
+        let addAmount = this.refs.addAmount.getValue() ? parseInt(this.refs.addAmount.getValue()) : 1;
+        actions.addItemToCart(productId, addAmount);
+    }
 
     render() {
         let {product, fetchedProducts} = this.props;
@@ -37,32 +47,49 @@ class ProductPage extends Component {
         else {
             renderChild = (
                 <div>
-                    <CardTitle
-                        title={product.name}
-                        subtitle={"$" + product.price_in_cents / 100.0}
-                        subtitleStyle={{position: "absolute", right: 16, top: 16, fontSize: 26, color: "black"}}
-                    />
+                    <div style={{display: "flex", flex: 1, flexDirection: "row"}}>
+                        <CardTitle
+                            title={product.name}
+                            style={{flex: 2}}
+                        />
+                        <CardTitle
+                            title={"$" + product.price_in_cents / 100.0}
+                            style={{flex: 1, display: "flex", textAlign: "right"}}
+                            titleStyle={{width: "100%"}}
+                        />
+                    </div>
                     <div style={{display: "flex", flex: 1, flexDirection: "row", padding: 16}}>
                         <CardMedia style={{width: 500}}>
                             <img src={product.image_url}/>
                         </CardMedia>
                         <CardText>
                             {capitalizeFirstLetter(product.tags)}.
+                            <CardActions
+                                style={{display: 'flex', justifyContent: "flex-end", flexDirection: "row", padding: 0, marginTop: 20}}>
+                                <TextField ref="addAmount"
+                                           floatingLabelText="Add..."
+                                           defaultValue={1}
+                                           type="number"
+                                           style={{width: 60, marginRight: 20}}
+                                           inputStyle={{textAlign: "right"}}/>
+                                <RaisedButton backgroundColor={styleVariables.colors.themeBg}
+                                              label="Add to Cart"
+                                              onClick={this.addItemToCart.bind(this)}
+                                              style={{marginRight: 0, position: "relative", height: 36, top: 30}}
+                                              labelColor="white"/>
+                            </CardActions>
                         </CardText>
-                        <CardActions style={{display: 'flex', justifyContent: "center"}}>
-
-                        </CardActions>
                     </div>
                 </div>
             );
         }
         return (
-            <div>
+            <div className="content-box">
                 <Link style={{color: "white", textDecoration: "none"}}
                       to="/">
                     <FlatButton label="< Back To List"/>
                 </Link>
-                <Card style={{margin: 20}}>
+                <Card style={{marginTop: 20}}>
                     {renderChild}
                 </Card>
             </div>
@@ -71,11 +98,21 @@ class ProductPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const product = state.products.data.find(x => x.product_no == ownProps.params.productId);
+    const product = state.products.data[ownProps.params.productId];
     return {
         fetchedProducts: state.products.fetchedProducts,
+        productId: ownProps.params.productId,
         product
     };
 };
 
-export default connect(mapStateToProps)(ProductPage);
+function mapDispatchToProps(dispatch) {
+    let {addItemToCart} = cartActions;
+    const dispatchActions = bindActionCreators({addItemToCart}, dispatch);
+    return {
+        dispatch,
+        actions: dispatchActions
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

@@ -13,9 +13,9 @@ class Home extends Component {
         let products = this.props.products;
         let productsRender = [];
 
-        products.map((product, idx) => {
+        Object.keys(products).map((productId, idx) => {
             productsRender.push(
-                <ProductTile key={idx} product={product}/>
+                <ProductTile key={idx} product={products[productId]}/>
             );
         });
 
@@ -24,7 +24,8 @@ class Home extends Component {
 
     render() {
         let homeClass = classNames({
-            'home-container': true
+            'home-container': true,
+            'content-box': true
         });
         let products = this.props.products;
 
@@ -37,7 +38,7 @@ class Home extends Component {
                 flexDirection: "row",
                 flexFlow: "wrap"
             }}>
-                {products.length > 0 ? this.getProductsList() : <SnailLoader/>}
+                {Object.keys(products).length > 0 ? this.getProductsList() : <SnailLoader/>}
             </div>
         );
     }
