@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
-export default class LinkToHome extends Component {
+import styleVariables from '../../lib/styleVariables.json';
+
+export default class LinkToCheckout extends Component {
     render() {
         return(
             <Link style={{color: "white", textDecoration: "none", ...this.props.style}}
-                  to="/">
-                <FlatButton label="< Back To Products" style={{marginTop: 20, color: "rgba(0,0,0,0.4)"}}/>
+                  to="/checkout">
+                <FlatButton label="Checkout" style={{color: styleVariables.colors.themeBg}}/>
             </Link>
         );
     }

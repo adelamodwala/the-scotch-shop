@@ -9,6 +9,7 @@ import App from './components/App';
 import Home from './components/home/Home';
 import ProductPage from './components/products/ProductPage';
 import Cart from './components/cart/Cart';
+import Checkout from './components/cart/Checkout';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -21,6 +22,7 @@ render(
                 <IndexRoute component={Home}/>
                 <Route path="/products/:productId" component={ProductPage}/>
                 <Route path="/cart" component={Cart}/>
+                <Route path="/checkout" component={Checkout}/>
             </Route>
         </Router>
     </Provider>,
