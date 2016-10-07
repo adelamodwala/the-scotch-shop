@@ -9,12 +9,18 @@ import ProductTile from './ProductTile';
 
 class Home extends Component {
 
-    componentDidMount() {
-        console.log("MOUNTED HOME");
-        let {dispatch, actions} = this.props;
-        dispatch(actions.fetchProductsList());
-    }
+    getProductsList() {
+        let products = this.props.products;
+        let productsRender = [];
 
+        products.map((product, idx) => {
+            productsRender.push(
+                <ProductTile key={idx} product={product}/>
+            );
+        });
+
+        return productsRender;
+    }
 
     render() {
         let homeClass = classNames({
@@ -23,30 +29,15 @@ class Home extends Component {
         let products = this.props.products;
 
         return (
-            <div>
-                <div className={homeClass}>
-                    {products.length > 0 ?
-                        <div style={{
-                            padding: 10,
-                            display: "flex",
-                            flex: 1,
-                            justifyContent: "center",
-                            flexDirection: "row",
-                            flexFlow: "wrap"
-                        }}>
-                            {products.map((product, idx) => {
-                                return (
-                                    <ProductTile key={idx} product={product}/>
-                                );
-                            })}
-                        </div> :
-                        <div style={{position: 'absolute', left: 'calc(50% - 15px)', paddingTop: 30}}>
-                            <SnailLoader />
-                        </div>
-                    }
-
-                </div>
-
+            <div className={homeClass} style={{
+                padding: 10,
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                flexDirection: "row",
+                flexFlow: "wrap"
+            }}>
+                {products.length > 0 ? this.getProductsList() : <SnailLoader/>}
             </div>
         );
     }
@@ -59,14 +50,5 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    let {fetchProductsList} = productsActions;
-    const dispatchActions = bindActionCreators({fetchProductsList}, dispatch);
-    return {
-        dispatch,
-        actions: dispatchActions
-    }
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
