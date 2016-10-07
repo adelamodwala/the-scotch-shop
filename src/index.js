@@ -7,7 +7,8 @@ require("./styles/style.scss");
 
 import App from './components/App';
 import Home from './components/home/Home';
-import ProductPage from './components/home/ProductPage';
+import ProductPage from './components/products/ProductPage';
+import Cart from './components/cart/Cart';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -19,6 +20,7 @@ render(
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="/products/:productId" component={ProductPage}/>
+                <Route path="/cart" component={Cart}/>
             </Route>
         </Router>
     </Provider>,

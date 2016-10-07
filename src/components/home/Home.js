@@ -3,9 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import classNames from 'classnames';
 
-import * as productsActions from '../../reducers/products/productsActions';
 import SnailLoader from '../common/SnailLoader';
-import ProductTile from './ProductTile';
+import ProductTile from '../products/ProductTile';
 
 class Home extends Component {
 
@@ -50,6 +49,5 @@ function mapStateToProps(state) {
         products
     };
 }
-
 
 export default connect(mapStateToProps)(Home);

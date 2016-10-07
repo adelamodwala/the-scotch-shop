@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Card, CardTitle, CardActions, CardHeader, CardText, CardMedia} from 'material-ui/Card';
-import {Link} from 'react-router';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 import SnailLoader from '../common/SnailLoader';
+import LinkToHome from '../home/LinkToHome';
 import styleVariables from '../../lib/styleVariables.json';
 import {capitalizeFirstLetter} from '../../lib/convert';
 import * as cartActions from '../../reducers/cart/cartActions';
@@ -17,8 +16,14 @@ class ProductPage extends Component {
     addItemToCart() {
         console.log(this.props.productId);
         let {actions, productId} = this.props;
-        let addAmount = this.refs.addAmount.getValue() ? parseInt(this.refs.addAmount.getValue()) : 1;
-        actions.addItemToCart(productId, addAmount);
+        let addAmountRef = this.refs.addAmount;
+        let addAmount = 1;
+
+        if (addAmountRef.getValue() && parseInt(addAmountRef.getValue()) > 0) {
+            addAmount = parseInt(this.refs.addAmount.getValue());
+            actions.addItemToCart(productId, addAmount);
+        }
+
     }
 
     render() {
@@ -47,7 +52,7 @@ class ProductPage extends Component {
         else {
             renderChild = (
                 <div>
-                    <div style={{display: "flex", flex: 1, flexDirection: "row"}}>
+                    <div className="single-row">
                         <CardTitle
                             title={product.name}
                             style={{flex: 2}}
@@ -58,14 +63,15 @@ class ProductPage extends Component {
                             titleStyle={{width: "100%"}}
                         />
                     </div>
-                    <div style={{display: "flex", flex: 1, flexDirection: "row", padding: 16}}>
+                    <div className="single-row" style={{padding: 16}}>
                         <CardMedia style={{width: 500}}>
                             <img src={product.image_url}/>
                         </CardMedia>
                         <CardText>
                             {capitalizeFirstLetter(product.tags)}.
                             <CardActions
-                                style={{display: 'flex', justifyContent: "flex-end", flexDirection: "row", padding: 0, marginTop: 20}}>
+                                className="single-row"
+                                style={{justifyContent: "flex-end", padding: 0, marginTop: 20}}>
                                 <TextField ref="addAmount"
                                            floatingLabelText="Add..."
                                            defaultValue={1}
@@ -85,10 +91,7 @@ class ProductPage extends Component {
         }
         return (
             <div className="content-box">
-                <Link style={{color: "white", textDecoration: "none"}}
-                      to="/">
-                    <FlatButton label="< Back To List"/>
-                </Link>
+                <LinkToHome/>
                 <Card style={{marginTop: 20}}>
                     {renderChild}
                 </Card>
