@@ -24,14 +24,23 @@ export default function cartReducer(state = initialState, action) {
                 cartItemCount: state.cartItemCount + addAmount
             };
 
-        case cartActionTypes.REMOVE_ITEM_FROM_CART:
+        case cartActionTypes.EDIT_ITEM_AMOUNT:
             let updatedCart = {...state.cartItems};
-            let newQuantity = state.cartItemCount - updatedCart[action.payload.productId];
-            delete updatedCart[action.payload.productId];
+            let productID = action.payload.productId;
+            let {quantity} = action.payload;
+            let quantityInCart = state.cartItemCount - updatedCart[productID] + quantity;
+
+            if(quantity === 0) {
+                delete updatedCart[productID];
+            }
+            else {
+                updatedCart[productID] = quantity;
+            }
+
             return {
                 ...state,
                 cartItems: updatedCart,
-                cartItemCount: newQuantity
+                cartItemCount: quantityInCart
             };
 
         default:

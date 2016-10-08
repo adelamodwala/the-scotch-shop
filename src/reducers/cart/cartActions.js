@@ -12,12 +12,13 @@ export function addItemToCart(productId, addAmount) {
     }
 }
 
-// Remove item action creators
-export function removeItemFromCart(productId) {
+// Update item amount action creators
+export function editItemAmount(productId, quantity) {
     return {
-        type: cartActionTypes.REMOVE_ITEM_FROM_CART,
+        type: cartActionTypes.EDIT_ITEM_AMOUNT,
         payload: {
-            productId
+            productId,
+            quantity
         }
     }
 }

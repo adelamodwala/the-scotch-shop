@@ -8,5 +8,5 @@ export const productsActionTypes = keyMirror({
 
 export const cartActionTypes = keyMirror({
     ADD_ITEM_TO_CART: null,
-    REMOVE_ITEM_FROM_CART: null
+    EDIT_ITEM_AMOUNT: null
 });

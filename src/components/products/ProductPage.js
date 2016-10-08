@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Card, CardTitle, CardActions, CardHeader, CardText, CardMedia} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
 
 import SnailLoader from '../common/SnailLoader';
 import LinkToHome from '../home/LinkToHome';
@@ -12,6 +13,11 @@ import {capitalizeFirstLetter} from '../../lib/convert';
 import * as cartActions from '../../reducers/cart/cartActions';
 
 class ProductPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {openSnackBar: false, itemsAdded: 0}
+    }
 
     addItemToCart() {
         console.log(this.props.productId);
@@ -22,8 +28,20 @@ class ProductPage extends Component {
         if (addAmountRef.getValue() && parseInt(addAmountRef.getValue()) > 0) {
             addAmount = parseInt(this.refs.addAmount.getValue());
             actions.addItemToCart(productId, addAmount);
+
+            this.setState({
+                openSnackBar: true,
+                itemsAdded: addAmount
+            });
         }
 
+    }
+
+    handleRequestClose() {
+        this.setState({
+            openSnackBar: false,
+            itemsAdded: 0
+        });
     }
 
     render() {
@@ -95,6 +113,13 @@ class ProductPage extends Component {
                 <Card style={{marginTop: 20}}>
                     {renderChild}
                 </Card>
+                <Snackbar
+                    open={this.state.openSnackBar}
+                    message={this.state.itemsAdded + " Items added to your cart"}
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    style={{textAlign: "center"}}
+                />
             </div>
         );
     }
