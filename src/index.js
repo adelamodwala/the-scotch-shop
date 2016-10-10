@@ -7,7 +7,7 @@ require("./styles/style.scss");
 
 import App from './components/App';
 import Home from './components/home/Home';
-import ProductPage from './components/products/ProductPage';
+import ProductPageContainer from './components/products/ProductPageContainer';
 import Cart from './components/cart/Cart';
 import Checkout from './components/cart/Checkout';
 import configureStore from './store/configureStore';
@@ -20,7 +20,7 @@ render(
         <Router history={hashHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
-                <Route path="/products/:productId" component={ProductPage}/>
+                <Route path="/products/:productId" component={ProductPageContainer}/>
                 <Route path="/cart" component={Cart}/>
                 <Route path="/checkout" component={Checkout}/>
             </Route>
