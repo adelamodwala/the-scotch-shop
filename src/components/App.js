@@ -12,7 +12,7 @@ class App extends Component {
         let {products} = this.props;
         if(Object.keys(products).length == 0 ) {
             let {dispatch, actions} = this.props;
-            dispatch(actions.fetchProductsList());
+            actions.fetchProductsList();
         }
     }
 

@@ -1,5 +1,7 @@
-import {getFetch, postFetch} from '../../lib/api';
+import fetch from 'isomorphic-fetch';
+
 import {productsActionTypes} from '../../lib/actionKeys';
+import {LCBO_ACCESS_KEY} from '../../lib/constants';
 
 export function fetchProductsListRequest() {
     return {
@@ -22,31 +24,20 @@ export function fetchProductsListFailure(payload) {
 }
 
 export function fetchProductsList() {
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch(fetchProductsListRequest());
-        return sendFetchProductsListRequest();
-    }
-}
 
-function sendFetchProductsListRequest() {
-    return (dispatch) => {
-        let ACCESS_KEY = "MDo4Mjg3MDljOC04YjZhLTExZTYtOWVkNC00ZmIyNjBmZDA0MWY6a0xDbElDU3lJdXVLVUhKR3BmN0ZrTUpWRTFLSnc3TU5HOEF6";
-        let opts = {
-            host: 'https://lcboapi.com',
-            endpoint: '/products?q=scotch',
+        return fetch('https://lcboapi.com/products?q=scotch', {
             headers: {
-                "Authorization": "Token " + ACCESS_KEY
+                "Authorization": "Token " + LCBO_ACCESS_KEY
             }
-        };
-
-        return getFetch(opts)
+        })
             .then((response) => {
                 let json;
                 if (response.ok) {
                     json = response.json();
                 }
                 else {
-                    console.log(response);
                     json = {"error": "There was an error retrieving the products"}
                 }
                 return json;
@@ -58,7 +49,6 @@ function sendFetchProductsListRequest() {
                     }));
                 }
                 else {
-                    console.log(json);
                     dispatch(fetchProductsListFailure(json));
                 }
             });
