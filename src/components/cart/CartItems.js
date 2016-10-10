@@ -50,21 +50,21 @@ export default class CartItems extends Component {
                 );
             });
 
-            if(!checkoutPage) {
-                // Add in the table footer for the total
-                itemsRender.push(
-                    <TableRow key={cartProductIds.length} style={{fontWeight: "900"}}>
-                        <TableRowColumn/>
-                        <TableRowColumn style={{textAlign: "right"}}>
-                            <span>Total</span>
-                        </TableRowColumn>
-                        <TableRowColumn>${total.toFixed(2)}</TableRowColumn>
+            // Add in the table footer for the total
+            itemsRender.push(
+                <TableRow key={cartProductIds.length} style={{fontWeight: "900"}}>
+                    <TableRowColumn/>
+                    <TableRowColumn style={{textAlign: "right"}}>
+                        <span>Total</span>
+                    </TableRowColumn>
+                    <TableRowColumn>${total.toFixed(2)}</TableRowColumn>
+                    {checkoutPage ? null :
                         <TableRowColumn style={{textAlign: "center"}}>
                             <LinkToCheckout/>
                         </TableRowColumn>
-                    </TableRow>
-                );
-            }
+                    }
+                </TableRow>
+            );
         }
 
         return itemsRender;
