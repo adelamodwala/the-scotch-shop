@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import SnailLoader from '../common/SnailLoader';
 import ProductTile from '../products/ProductTile';
 
-class Home extends Component {
+export class Home extends Component {
 
     getProductsList() {
         let products = this.props.products;
