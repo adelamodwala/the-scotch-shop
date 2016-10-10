@@ -55,6 +55,6 @@ describe('components', () => {
             expect(enzymeWrapper.find('div').hasClass('home-container')).toBe(true);
             expect(enzymeWrapper.find('ProductTile').length).toBe(0);
             expect(enzymeWrapper.find('SnailLoader').length).toBe(1);
-        })
+        });
     });
 });
