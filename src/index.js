@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux'
 import {Router, Route, IndexRoute, hashHistory} from 'react-router'
+import throttle from 'lodash/throttle';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 require("./styles/style.scss");
 
+import {loadState, saveState} from './lib/localStorage';
 import App from './components/App';
 import Home from './components/home/Home';
 import ProductPageContainer from './components/products/ProductPageContainer';
@@ -12,8 +14,13 @@ import Cart from './components/cart/Cart';
 import Checkout from './components/cart/Checkout';
 import configureStore from './store/configureStore';
 
-const store = configureStore();
+const store = configureStore(loadState());
 injectTapEventPlugin();
+
+// Throttling allows us to persist at most once per second
+store.subscribe(throttle(() => {
+    saveState(store.getState());
+}), 1000);
 
 render(
     <Provider store={store}>
