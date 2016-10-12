@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux'
-import {Router, Route, IndexRoute, hashHistory} from 'react-router'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import throttle from 'lodash/throttle';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 require("./styles/style.scss");
@@ -24,7 +24,7 @@ store.subscribe(throttle(() => {
 
 render(
     <Provider store={store}>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="/products/:productId" component={ProductPageContainer}/>
