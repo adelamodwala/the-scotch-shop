@@ -23,10 +23,11 @@ export class ProductPageContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const product = state.products.data[ownProps.params.productId];
+    const productId = ownProps.params.productId;
+    const product = state.products.data[productId];
     return {
         fetchedProducts: state.products.fetchedProducts,
-        productId: ownProps.params.productId,
+        productId,
         product
     };
 };
