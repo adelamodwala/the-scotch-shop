@@ -9,7 +9,8 @@
     "start": "node devServer.js",
     "lint": "eslint src",
     "test": "jest --verbose",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
