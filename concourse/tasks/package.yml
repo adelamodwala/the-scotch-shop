@@ -8,5 +8,4 @@ inputs:
     path: .
 
 run:
-  path: "npm"
-  args: ["run-script", "build"]
+  path: "install.sh"

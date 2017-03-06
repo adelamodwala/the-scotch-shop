@@ -1,0 +1,1 @@
+npm install -g rimraf && npm install && npm run-script build
