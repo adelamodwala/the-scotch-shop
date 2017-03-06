@@ -9,4 +9,4 @@ inputs:
 
 run:
   path: "npm"
-  args: ["run-script", "build"]
+  args: ["run-script", "install"]
