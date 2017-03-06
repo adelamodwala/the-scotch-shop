@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
-import styleVariables from '../../lib/styleVariables.json';
+import styleVariables from '../../lib/styleVariables';
 
 export default class LinkToCheckout extends Component {
     render() {

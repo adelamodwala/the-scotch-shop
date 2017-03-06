@@ -3,7 +3,7 @@ import {Card, CardActions, CardHeader, CardText, CardMedia} from 'material-ui/Ca
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router';
 
-import styleVariables from '../../lib/styleVariables.json';
+import styleVariables from '../../lib/styleVariables';
 
 export default class ProductTile extends Component {
     render() {

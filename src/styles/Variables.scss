@@ -1,4 +1,12 @@
-@import '../lib/styleVariables.json';
+$themeBg: #2978A0;
+$primaryBg: #F5F5F5;
+$primaryBgText: #F5F5F5;
+$secondaryBg: #7C77B9;
+$secondaryBgBtn: #F5F5F5;
+$secondaryBgText: #0C0C0C;
+$secondaryBgPlcHldr: #FFFFFF;
 
-$primaryBgColor: map-get($colors, themeBg);
-$primaryBgTextColor: map-get($colors, primaryBgText);
+$floater: #8FC93A;
+
+$primaryBgColor: $themeBg;
+$primaryBgTextColor: $primaryBgText;

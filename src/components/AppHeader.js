@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
 
-import styleVariables from '../lib/styleVariables.json';
+import styleVariables from '../lib/styleVariables';
 import CartBadge from './cart/CartBadge';
 
 export default class AppHeader extends Component {

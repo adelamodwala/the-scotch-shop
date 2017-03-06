@@ -6,7 +6,7 @@ import Snackbar from 'material-ui/Snackbar';
 
 import SnailLoader from '../common/SnailLoader';
 import LinkToHome from '../home/LinkToHome';
-import styleVariables from '../../lib/styleVariables.json';
+import styleVariables from '../../lib/styleVariables';
 import {capitalizeFirstLetter} from '../../lib/convert';
 
 export default class ProductPage extends Component {

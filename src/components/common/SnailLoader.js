@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import styleVariables from '../../lib/styleVariables.json';
+import styleVariables from '../../lib/styleVariables';
 
 export default class SnailLoader extends Component {
     render() {
