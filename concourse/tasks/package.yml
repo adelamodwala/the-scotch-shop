@@ -1,7 +1,7 @@
 platform: linux
 image_resource:
   type: docker-image
-  source: source: {repository: ymedlop/npm-cache-resource, tag: 7}
+  source: {repository: ymedlop/npm-cache-resource, tag: 7}
 
 inputs:
   - name: source-code
