@@ -10,6 +10,8 @@ jobs:
     plan:
     - get: source-code
       trigger: true
+    - task: install
+      file: source-code/concourse/tasks/install.yml
     - task: package
       privileged: true
       file: source-code/concourse/tasks/package.yml
