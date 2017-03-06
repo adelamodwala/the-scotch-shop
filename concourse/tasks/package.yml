@@ -8,4 +8,4 @@ inputs:
     path: .
 
 run:
-  path: "install.sh"
+  path: source-code/concourse/tasks/install.sh
