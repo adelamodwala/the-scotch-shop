@@ -5,7 +5,6 @@ image_resource:
 
 inputs:
   - name: source-code
-    path: .
 
 run:
-  path: ./concourse/tasks/install.sh
+  path: ./source-code/concourse/tasks/install.sh
