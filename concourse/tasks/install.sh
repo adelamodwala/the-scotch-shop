@@ -1,1 +1,1 @@
-npm install -g rimraf && npm install && npm run-script build
+npm install --save-dev rimraf && npm install && npm run-script build
