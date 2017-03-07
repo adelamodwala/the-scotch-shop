@@ -20,7 +20,7 @@ injectTapEventPlugin();
 // Throttling allows us to persist at most once per second
 store.subscribe(throttle(() => {
     saveState(store.getState());
-}), 1000);
+}), 1001);
 
 render(
     <Provider store={store}>
