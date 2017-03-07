@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run-script',
+1 verbose cli   'build' ]
+2 info using npm@3.10.3
+3 info using node@v6.3.0
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info lifecycle react-transform-boilerplate@1.0.0~prebuild: react-transform-boilerplate@1.0.0
+6 silly lifecycle react-transform-boilerplate@1.0.0~prebuild: no script for prebuild, continuing
+7 info lifecycle react-transform-boilerplate@1.0.0~build: react-transform-boilerplate@1.0.0
+8 verbose lifecycle react-transform-boilerplate@1.0.0~build: unsafe-perm in lifecycle true
+9 verbose lifecycle react-transform-boilerplate@1.0.0~build: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\ethoca\playground\the-scotch-shop\node_modules\.bin;C:\Program Files\nodejs;H:\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\mingw64\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\local\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\mingw64\bin;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\bin;H:\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Java\jdk1.7.0_79\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\PuTTY;C:\Program Files (x86)\Plantronics\Spokes3G;C:\Program Files (x86)\GitExtensions;C:\Program Files\apache-maven-3.3.9\bin;C:\Program Files\nodejs;C:\Python27;C:\HashiCorp\Vagrant\bin;C:\ProgramData\chocolatey\bin;C:\Users\adel.amodwala\AppData\Local\Android\sdk\tools;C:\Users\adel.amodwala\AppData\Local\Android\sdk\platform-tools;C:\Program Files (x86)\Skype\Phone;C:\Program Files (x86)\Spoon\Cmd;C:\Program Files\fly;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Java\jdk1.7.0_79\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\PuTTY;C:\Program Files (x86)\Plantronics\Spokes3G;C:\Program Files (x86)\GitExtensions;C:\Program Files\apache-maven-3.3.9\bin;C:\Program Files\nodejs;C:\Python27;C:\HashiCorp\Vagrant\bin;C:\ProgramData\chocolatey\bin;C:\Users\adel.amodwala\AppData\Local\Android\sdk\tools;C:\Users\adel.amodwala\AppData\Local\Android\sdk\platform-tools;C:\Program Files (x86)\Skype\Phone;C:\Program Files (x86)\Spoon\Cmd;C:\Program Files\fly;C:\Program Files (x86)\Google\Chrome\Application;C:\Users\adel.amodwala\AppData\Local\Programs\Git\cmd;C:\Users\adel.amodwala\AppData\Local\atom\bin;C:\Users\adel.amodwala\AppData\Roaming\npm;C:\Users\adel.amodwala\AppData\Local\Spoon\Cmd;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\bin\vendor_perl;C:\Users\adel.amodwala\AppData\Local\Programs\Git\usr\bin\core_perl
+10 verbose lifecycle react-transform-boilerplate@1.0.0~build: CWD: C:\ethoca\playground\the-scotch-shop
+11 silly lifecycle react-transform-boilerplate@1.0.0~build: Args: [ '/d /s /c', 'npm run clean && npm run build:webpack' ]
+12 silly lifecycle react-transform-boilerplate@1.0.0~build: Returned: code: 3221226505  signal: null
+13 info lifecycle react-transform-boilerplate@1.0.0~build: Failed to exec build script
+14 verbose stack Error: react-transform-boilerplate@1.0.0 build: `npm run clean && npm run build:webpack`
+14 verbose stack Exit status 3221226505
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:242:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:852:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid react-transform-boilerplate@1.0.0
+16 verbose cwd C:\ethoca\playground\the-scotch-shop
+17 error Windows_NT 6.3.9600
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run-script" "build"
+19 error node v6.3.0
+20 error npm  v3.10.3
+21 error code ELIFECYCLE
+22 error react-transform-boilerplate@1.0.0 build: `npm run clean && npm run build:webpack`
+22 error Exit status 3221226505
+23 error Failed at the react-transform-boilerplate@1.0.0 build script 'npm run clean && npm run build:webpack'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the react-transform-boilerplate package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     npm run clean && npm run build:webpack
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs react-transform-boilerplate
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls react-transform-boilerplate
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
