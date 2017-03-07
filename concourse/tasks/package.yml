@@ -8,4 +8,4 @@ inputs:
     path: .
 
 run:
-  path: concourse/tasks/install.sh
+  path: ./concourse/tasks/install.sh
