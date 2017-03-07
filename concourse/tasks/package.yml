@@ -7,4 +7,4 @@ inputs:
   - name: source-code
 
 run:
-  path: ./source-code/concourse/tasks/install.sh
+  path: ls
